@@ -1,0 +1,82 @@
+2025-08-29 10:12:31 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 10:12:38 [ERROR] Fatal error: The property 'Id' cannot be found on this object. Verify that the property exists.
+2025-08-29 10:18:09 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 10:18:19 [ERROR] Fatal error: The variable '$serviceFolder' cannot be retrieved because it has not been set.
+2025-08-29 10:19:34 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 10:19:52 [ERROR] Fatal error: The variable '$serviceFolder' cannot be retrieved because it has not been set.
+2025-08-29 10:23:53 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 10:24:01 [ERROR] Fatal error: The variable '$serviceFolder' cannot be retrieved because it has not been set.
+2025-08-29 10:26:55 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 10:27:01 [ERROR] Fatal error: The variable '$serviceFolder' cannot be retrieved because it has not been set.
+2025-08-29 10:50:56 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 10:51:01 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 10:51:10 [ERROR] Fatal error: Cannot bind argument to parameter 'ScopeDef' because it is null.
+2025-08-29 10:54:13 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 10:54:13 [ERROR] Failed to parse config at C:\menu\config.json. Cannot add a member with the name "DefaultSubscriptionId" because a member with that name already exists. To overwrite the member anyway, add the Force parameter to your command.
+2025-08-29 11:00:47 [ERROR] Fatal error: The variable '$Config' cannot be retrieved because it has not been set.
+2025-08-29 11:02:02 [ERROR] Fatal error: The property 'AzLogin' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:04:31 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:04:31 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":null,"NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:04:55 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:05:01 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:05:01 [ERROR] Fatal error: A parameter cannot be found that matches parameter name 'TenantId'.
+2025-08-29 11:08:50 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:08:50 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":null,"NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:09:28 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:09:37 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:09:41 [ERROR] Fatal error: Cannot bind argument to parameter 'ScopeDef' because it is null.
+2025-08-29 11:18:36 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:18:36 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":null,"NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:19:08 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:19:17 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:19:21 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:19:21 [ERROR] Fatal error: Cannot bind argument to parameter 'RequiredRoles' because it is an empty array.
+2025-08-29 11:24:22 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:24:22 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":null,"NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:24:43 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:24:52 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:24:56 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:24:56 [ERROR] Fatal error: The variable '$enabled' cannot be retrieved because it has not been set.
+2025-08-29 11:25:39 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:25:39 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":null,"NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:25:57 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:26:05 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:26:07 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:48:26 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:48:26 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:48:47 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:48:54 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:48:56 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-08-29 11:48:57 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:48:57 [ERROR] Fatal error: The property 'Count' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:58:32 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 11:58:32 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 11:58:54 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 11:58:59 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 11:59:02 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-08-29 11:59:04 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 11:59:04 [ERROR] Fatal error: The property 'Count' cannot be found on this object. Verify that the property exists.
+2025-08-29 12:01:37 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 12:01:37 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 12:01:51 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 12:01:57 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 12:01:59 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-08-29 12:02:00 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 12:02:00 [ERROR] Fatal error: The property 'Count' cannot be found on this object. Verify that the property exists.
+2025-08-29 12:15:05 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 12:15:05 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 12:17:00 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 12:17:05 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 12:17:07 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-08-29 12:17:07 [ERROR] Fatal error: The variable '$rawActions' cannot be retrieved because it has not been set.
+2025-08-29 12:20:40 [INFO] Loaded config from C:\menu\config.json
+2025-08-29 12:20:41 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-08-29 12:20:55 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-08-29 12:21:01 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-08-29 12:21:02 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-08-29 12:21:04 [WARN] Failed to parse actions.json for 'C:\menu\services\aviatrix'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-08-29 12:21:08 [INFO] Executing: C:\menu\services\aviatrix\List-ResourceGroups.ps1 
+2025-08-29 12:21:09 [ERROR] Action failed: Cannot process argument transformation on parameter 'NameLike'. Cannot convert value to type System.String.
+2025-08-29 12:24:01 [INFO] Executing: C:\menu\services\aviatrix\List-ResourceGroups.ps1 
+2025-08-29 12:24:13 [INFO] Executing: C:\menu\services\aviatrix\Show-Context.ps1 
+2025-08-29 12:24:13 [ERROR] Action failed: A positional parameter cannot be found that accepts argument 'System.Object[]'.

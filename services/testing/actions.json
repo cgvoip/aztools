@@ -1,0 +1,45 @@
+{
+  "title": "Aviatrix - Test Actions",
+  "actions": [
+    {
+      "name": "Show Azure Context",
+      "script": "Show-Context.ps1",
+      "args": [],
+      "scope": { "type": "subscription" },
+      "sameProcess": true
+    },
+    {
+      "name": "List Resource Groups (Reader required)",
+      "script": "List-ResourceGroups.ps1",
+      "args": [],
+      "requiredRoles": ["Reader"],
+      "scope": { "type": "subscription" },
+      "sameProcess": true
+    },
+    {
+      "name": "WhoAmI Roles at RG Scope (Reader required)",
+      "script": "WhoAmI-AtScope.ps1",
+      "args": ["-ResourceGroupName", "rg-aviatrix-lab"],
+      "requiredRoles": ["Reader"],
+      "scope": { "type": "resourceGroup", "name": "rg-aviatrix-lab" },
+      "sameProcess": true
+    },
+    {
+      "name": "Create/Update Test RG (WhatIf) - Contributor",
+      "script": "Create-TestResourceGroup.ps1",
+      "args": ["-ResourceGroupName", "rg-aviatrix-lab", "-Location", "westeurope", "-WhatIf"],
+      "requiredRoles": ["Contributor"],
+      "scope": { "type": "resourceGroup", "name": "rg-aviatrix-lab" },
+      "sameProcess": true
+    },
+    {
+      "name": "Delete Test RG (WhatIf) - Owner",
+      "script": "Remove-TestResourceGroup.ps1",
+      "args": ["-ResourceGroupName", "rg-aviatrix-lab", "-WhatIf"],
+      "requiredRoles": ["Owner"],
+      "scope": { "type": "resourceGroup", "name": "rg-aviatrix-lab" },
+      "sameProcess": true
+    }
+  ]
+}
+
