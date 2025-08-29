@@ -44,7 +44,7 @@ AzureSupportTool\
 ├─ menu.ps1
 ├─ config.json                # optional
 ├─ services\
-│  ├─ aviatrix\
+│  ├─ testing\
 │  │  ├─ actions.json
 │  │  ├─ Show-Context.ps1
 │  │  ├─ List-ResourceGroups.ps1
@@ -194,25 +194,25 @@ Flow:
 
 ---
 
-## Sample service: `aviatrix` (test pack)
+## Sample service: `testing` (test pack)
 
 Use these to validate both **read** and **write** paths without touching vendor APIs.
 
-`services\aviatrix\actions.json`
+`services\testing\actions.json`
 ```json
 {
-  "title": "Aviatrix - Test Actions",
+  "title": "testing - Test Actions",
   "actions": [
     { "name": "Show Azure Context", "script": "Show-Context.ps1", "args": [], "scope": { "type": "subscription" }, "sameProcess": true },
     { "name": "List Resource Groups (Reader required)", "script": "List-ResourceGroups.ps1", "args": [], "requiredRoles": ["Reader"], "scope": { "type": "subscription" }, "sameProcess": true },
-    { "name": "WhoAmI Roles at RG Scope (Reader required)", "script": "WhoAmI-AtScope.ps1", "args": ["-ResourceGroupName","rg-aviatrix-lab"], "requiredRoles": ["Reader"], "scope": { "type": "resourceGroup", "name": "rg-aviatrix-lab" }, "sameProcess": true },
-    { "name": "Create/Update Test RG (WhatIf) - Contributor", "script": "Create-TestResourceGroup.ps1", "args": ["-ResourceGroupName","rg-aviatrix-lab","-Location","westeurope","-WhatIf"], "requiredRoles": ["Contributor"], "scope": { "type": "resourceGroup", "name": "rg-aviatrix-lab" }, "sameProcess": true },
-    { "name": "Delete Test RG (WhatIf) - Owner", "script": "Remove-TestResourceGroup.ps1", "args": ["-ResourceGroupName","rg-aviatrix-lab","-WhatIf"], "requiredRoles": ["Owner"], "scope": { "type": "resourceGroup", "name": "rg-aviatrix-lab" }, "sameProcess": true }
+    { "name": "WhoAmI Roles at RG Scope (Reader required)", "script": "WhoAmI-AtScope.ps1", "args": ["-ResourceGroupName","rg-testing-lab"], "requiredRoles": ["Reader"], "scope": { "type": "resourceGroup", "name": "rg-testing-lab" }, "sameProcess": true },
+    { "name": "Create/Update Test RG (WhatIf) - Contributor", "script": "Create-TestResourceGroup.ps1", "args": ["-ResourceGroupName","rg-testing-lab","-Location","westeurope","-WhatIf"], "requiredRoles": ["Contributor"], "scope": { "type": "resourceGroup", "name": "rg-testing-lab" }, "sameProcess": true },
+    { "name": "Delete Test RG (WhatIf) - Owner", "script": "Remove-TestResourceGroup.ps1", "args": ["-ResourceGroupName","rg-testing-lab","-WhatIf"], "requiredRoles": ["Owner"], "scope": { "type": "resourceGroup", "name": "rg-testing-lab" }, "sameProcess": true }
   ]
 }
 ```
 
-Scripts to include in `services\aviatrix\`:
+Scripts to include in `services\testing\`:
 - `Show-Context.ps1`: prints current Az context (tenant, subscription, account).
 - `List-ResourceGroups.ps1`: lists RGs; accepts `-NameLike` wildcard.
 - `WhoAmI-AtScope.ps1`: shows your principal ObjectId and role assignments at a scope (and parent).
