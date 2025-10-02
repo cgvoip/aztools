@@ -570,6 +570,7 @@ try {
       }
 
       try {
+        Write-Host $picked.Tag.Action
         Invoke-Action -Action $picked.Tag.Action
       } catch {
         Write-Host "Action failed: $_" -ForegroundColor Red

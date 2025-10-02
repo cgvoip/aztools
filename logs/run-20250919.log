@@ -1,0 +1,27 @@
+2025-09-19 10:19:31 [INFO] Loaded config from C:\Users\clgin\OneDrive\Documents\GitHub\aztools\config.json
+2025-09-19 10:19:31 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-09-19 10:19:54 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-09-19 10:19:57 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-09-19 10:20:04 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-09-19 10:20:06 [WARN] Failed to parse actions.json for 'C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-09-19 10:20:11 [INFO] Executing: C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing\Create-TestRG.ps1 
+2025-09-19 10:20:11 [ERROR] Action failed: At C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing\Create-TestRG.ps1:34 char:53
++ … n. Provide JSON like: '{\"env\":\"lab\",\"owner\":\"aviatrix\"}'. $_"
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'env\":\"lab\",\"owner\":\"aviatrix\"}'. $_"' in expression or statement.
+2025-09-19 10:21:18 [INFO] Loaded config from C:\Users\clgin\OneDrive\Documents\GitHub\aztools\config.json
+2025-09-19 10:21:18 [INFO] Effective config: {"AzLogin":true,"DefaultTenantId":"b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2","DefaultSubscriptionId":"f4a942b2-d14f-41ca-9cd9-be93f3b02f94","NewWindowForScripts":false,"HideLockedActions":true}
+2025-09-19 10:21:44 [INFO] Active tenant: b3e8f808-8ed5-4d2e-a6e3-e693b810e3d2
+2025-09-19 10:21:48 [INFO] Active subscription: cogauto-dev (f4a942b2-d14f-41ca-9cd9-be93f3b02f94)
+2025-09-19 10:21:49 [INFO] RBAC debug: principalId=5dd584e6-d98a-411c-8580-901c9190a287, sub=f4a942b2-d14f-41ca-9cd9-be93f3b02f94
+2025-09-19 10:21:50 [WARN] Failed to parse actions.json for 'C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing'. Falling back to *.ps1. The property 'requiredRoles' cannot be found on this object. Verify that the property exists.
+2025-09-19 10:21:51 [INFO] Executing: C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing\Create-TestRG.ps1 
+2025-09-19 10:21:51 [ERROR] Action failed: At C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing\Create-TestRG.ps1:34 char:53
++ … n. Provide JSON like: '{\"env\":\"lab\",\"owner\":\"aviatrix\"}'. $_"
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'env\":\"lab\",\"owner\":\"aviatrix\"}'. $_"' in expression or statement.
+2025-09-19 10:22:00 [INFO] Executing: C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing\Create-TestRG.ps1 
+2025-09-19 10:22:00 [ERROR] Action failed: At C:\Users\clgin\OneDrive\Documents\GitHub\aztools\services\testing\Create-TestRG.ps1:34 char:53
++ … n. Provide JSON like: '{\"env\":\"lab\",\"owner\":\"aviatrix\"}'. $_"
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'env\":\"lab\",\"owner\":\"aviatrix\"}'. $_"' in expression or statement.
