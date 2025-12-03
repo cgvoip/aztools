@@ -1,38 +1,38 @@
 <#
 .SYNOPSIS
-    Azure Policy Remediation Runbook for RG scoped Assignments only
-    - Only triggers remediation for policy assignments that are directly scoped to the Resource Group
-    - Looks at actual compliance state to avoid running remediation for compliant assignments
-    - Remediates individual policies and each policy in initiatives one per assignment, even if multiple are non-compliant
-
+    Azure Policy Remediation Runbook – RG Scoped ONLY
+    - ONLY remediates INDIVIDUAL (non-initiative) policy assignments
+    - Ignores all policies that are part of an initiative
+    - Only triggers for assignments directly scoped to the Resource Group
 #>
 
-# 1. Add subscription name or ID to skip
+# Add subscription name or ID to skip
 $ExcludeSubscriptions = @()
 
-# 2. Add resource groups and supports * wildcard
+# Add resource groups (supports * wildcard)
 $ExcludeResourceGroups = @()
 
-# 3. Specify assignment name OR full Assignment ID for policy or initiative
-#     Leave empty @() to allow all assignments
+# Optionally limit to specific assignment names or full Assignment IDs
+# Leave empty @() to allow all qualifying assignments
 $TargetPolicyAssignmentNamesOrIds = @()
 
 $ErrorActionPreference = "Stop"
 $counter = 0
 
-Write-Output "Starting RG Scoped Smart Policy Remediation Runbook - $(Get-Date)"
+Write-Output "Starting RG-Scoped NON-INITIATIVE Policy Remediation Runbook - $(Get-Date)"
 
-# Connect with Managed Identity
+# Connect using Managed Identity
 try {
-    Write-Output "Authenticating with managed identity"
+    Write-Output "Authenticating with managed identity..."
     Connect-AzAccount -Identity | Out-Null
+    Write-Output "Authentication successful."
 }
 catch {
-    Write-Error "Failed to connect with managed identity: $_"
+    Write-Error "Failed to authenticate with managed identity: $_"
     throw
 }
 
-# Get enabled subscriptions
+# Get enabled subscriptions to process
 $allSubs = Get-AzSubscription | Where-Object State -eq "Enabled"
 $subsToProcess = $allSubs | Where-Object {
     $_.Name -notin $ExcludeSubscriptions -and $_.Id -notin $ExcludeSubscriptions
@@ -44,6 +44,7 @@ foreach ($sub in $subsToProcess) {
     Write-Output "=== Subscription: [$($sub.Name)] ($($sub.Id)) ==="
     Set-AzContext -SubscriptionId $sub.Id | Out-Null
 
+    # Get resource groups with wildcard exclusion support
     $rgs = Get-AzResourceGroup | Where-Object {
         $name = $_.ResourceGroupName
         -not ($ExcludeResourceGroups | Where-Object {
@@ -54,71 +55,82 @@ foreach ($sub in $subsToProcess) {
     Write-Output "Scanning $($rgs.Count) resource groups..."
 
     foreach ($rg in $rgs) {
-        $rgName   = $rg.ResourceGroupName
-        $rgScope  = $rg.ResourceId  
+        $rgName  = $rg.ResourceGroupName
+        $rgScope = $rg.ResourceId
 
-        Write-Output "  → Checking RG: $rgName"
+        Write-Output "-- Checking RG: $rgName"
 
-        # Get only non-compliant states for this RG
+        # Get only NonCompliant policy states in this RG
         $complianceResults = Get-AzPolicyState `
             -ResourceGroupName $rgName `
-            -ErrorAction SilentlyContinue |
+            -ErrorAction SilentlyContinue | 
             Where-Object { $_.ComplianceState -eq "NonCompliant" }
 
         if (-not $complianceResults) {
-            Write-Output "    Compliant – nothing to do"
+            Write-Output "-- No non-compliant policies found."
             continue
         }
 
-        # Filter to only assignments that are directly scoped to this RG
+        # FILTER 1: Only assignments directly scoped to this RG
         $complianceResults = $complianceResults | Where-Object { $_.PolicyAssignmentScope -eq $rgScope }
 
         if (-not $complianceResults) {
-            Write-Output "No non-compliant RG scoped assignments skipping"
+            Write-Output "-- No RG-scoped assignments found."
             continue
         }
 
-        # Identifies any specified target assignments
+        # FILTER 2: EXCLUDE any policy that is part of an initiative
+        # PolicyDefinitionReferenceId is ONLY populated when the policy comes from an initiative
+        $complianceResults = $complianceResults | Where-Object { 
+            [string]::IsNullOrWhiteSpace($_.PolicyDefinitionReferenceId) 
+        }
+
+        if (-not $complianceResults) {
+            Write-Output "-- No non-compliant INDIVIDUAL (non-initiative) policies found."
+            continue
+        }
+
+        # Optional: Filter by specific target assignment names/IDs
         if ($TargetPolicyAssignmentNamesOrIds.Count -gt 0) {
             $complianceResults = $complianceResults | Where-Object {
                 $id   = $_.PolicyAssignmentId
                 $name = $_.PolicyAssignmentName
-
                 ($id -in $TargetPolicyAssignmentNamesOrIds) -or
                 ($name -in $TargetPolicyAssignmentNamesOrIds)
             }
 
             if (-not $complianceResults) {
-                Write-Output "No non-compliant target RG scoped assignments skipping"
+                Write-Output "-- No matching target assignments found."
                 continue
             }
         }
 
-        # Group by assignment ID to handle policies in initiatives correctly by using only one remediation per assignment
+        # Group by assignment (should be one per standalone policy)
         $assignmentsToRemediate = $complianceResults |
             Group-Object PolicyAssignmentId |
             ForEach-Object {
                 [pscustomobject]@{
                     PolicyAssignmentId   = $_.Name
                     PolicyAssignmentName = $_.Group[0].PolicyAssignmentName
-                    NonCompliantComponents = $_.Count
+                    PolicyDefinitionId   = $_.Group[0].PolicyDefinitionId
                 }
             }
 
-        Write-Output "Found $($assignmentsToRemediate.Count) non-compliant RG scoped assignment(s) remediation check"
+        Write-Output "Found $($assignmentsToRemediate.Count) non-compliant INDIVIDUAL policy assignment(s) to remediate."
 
-        # Get pending remediations to avoid conflicts and failures
+        # Check for in-progress remediations to avoid conflicts
         $pendingRemediations = @()
         try {
             $pendingRemediations = Get-AzPolicyRemediation `
                 -ResourceGroupName $rgName `
                 -Top 1000 `
-                -Filter "ProvisioningState eq 'Accepted' or ProvisioningState eq 'Running' or ProvisioningState eq 'Submitted'" `
+                -Filter "ProvisioningState eq 'Running' or ProvisioningState eq 'Accepted' or ProvisioningState eq 'Submitted'" `
                 -ErrorAction Stop
         }
         catch {
-            $pendingRemediations = Get-AzPolicyRemediation -ResourceGroupName $rgName -Top 500 |
-                Where-Object { $_.ProvisioningState -notin 'Succeeded','Failed','Canceled' }
+            # Fallback if filter not supported in older API versions
+            $allRem = Get-AzPolicyRemediation -ResourceGroupName $rgName -Top 500 -ErrorAction SilentlyContinue
+            $pendingRemediations = $allRem | Where-Object { $_.ProvisioningState -notin 'Succeeded','Failed','Canceled' }
         }
 
         foreach ($assign in $assignmentsToRemediate) {
@@ -126,27 +138,29 @@ foreach ($sub in $subsToProcess) {
             $assignmentName = $assign.PolicyAssignmentName
 
             if ($pendingRemediations | Where-Object PolicyAssignmentId -EQ $assignmentId) {
-                Write-Output "      Remediation already in progress for: $assignmentName"
+                Write-Output "-- Remediation already running for: $assignmentName – skipping"
                 continue
             }
 
             try {
-                Write-Output "      Starting remediation for RG scoped assignment: $assignmentName $(if($assign.NonCompliantComponents -gt 1){"(initiative – $($assign.NonCompliantComponents) components non-compliant)"})"
-                $newRem = Start-AzPolicyRemediation `
+                Write-Output "-- Starting remediation for INDIVIDUAL policy: $assignmentName"
+                $remediation = Start-AzPolicyRemediation `
                     -ResourceGroupName $rgName `
                     -PolicyAssignmentId $assignmentId `
                     -ErrorAction Stop
 
-                Write-Output "        Remediation created: $($newRem.Name)"
+                Write-Output "-- Remediation job created: $($remediation.Name)"
+                $counter++
             }
             catch {
-                Write-Warning "        Failed to start remediation for $assignmentName : $_"
+                Write-Warning "-- Failed to start remediation for $assignmentName : $_"
             }
         }
 
         # Memory cleanup every 10 RGs
-        if (++$counter % 10 -eq 0) { [GC]::Collect() }
+        if ($counter % 10 -eq 0) { [GC]::Collect() }
     }
 }
 
-Write-Output "`nRG-Scoped Smart Remediation Runbook completed - $(Get-Date)"
+Write-Output "`nRG-Scoped NON-INITIATIVE Policy Remediation Runbook completed - $(Get-Date)"
+Write-Output "Total individual policy remediations started: $counter"
